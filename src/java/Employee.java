@@ -1,3 +1,8 @@
+/**
+ * This methods keeps employee's name
+ * and number of contracts that employee
+ * is working on
+ */
 public class Employee {
 
     private String employeeName;

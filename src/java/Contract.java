@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class keeps a cost of a contract,
+ * maximum number of designers that can work
+ * on this contract, and a list of designers
+ * that are working on contract
+ */
 public class Contract {
 
     private float cost;
@@ -8,8 +14,17 @@ public class Contract {
     private List<Employee> designersTeam;
 
     public Contract(float cost, int maxNumberOfDesigners) {
-        this.cost = cost;
-        this.maxNumberOfDesigners = maxNumberOfDesigners;
+        if(cost >= 0) {
+            this.cost = cost;
+        } else {
+            throw new IllegalArgumentException("Cost can't be negative");
+        }
+
+        if(maxNumberOfDesigners > 0) {
+            this.maxNumberOfDesigners = maxNumberOfDesigners;
+        } else {
+            throw new IllegalArgumentException("Minimum one designer is required");
+        }
         designersTeam = new ArrayList<>();
     }
 
@@ -21,12 +36,25 @@ public class Contract {
         return designersTeam;
     }
 
+    /**
+     * Methods checks number of designers in a team
+     * and if it is less than maximum number of designers
+     * than can be applied to the team employee will be added
+     * @param agency Agency from which employee will be added
+     * @return true if employee is added, false if there are
+     * more designers in the team than maximum number allowed
+     * or if employee is already in that contract
+     */
     public boolean addDesigner(Agency agency) {
         if(designersTeam.size() < maxNumberOfDesigners) {
             Employee designer = agency.getEmployeeWithLeastNumberOfContracts();
-            designersTeam.add(designer);
-            designer.increaseNumberOfContracts();
-            return true;
+            if(designersTeam.contains(designer)) {
+                return false;
+            } else {
+                designersTeam.add(designer);
+                designer.increaseNumberOfContracts();
+                return true;
+            }
         } else {
             return false;
         }
