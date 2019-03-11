@@ -5,7 +5,7 @@ public class Contract {
 
     private float cost;
     private int maxNumberOfDesigners;
-    List<Employee> designersTeam;
+    private List<Employee> designersTeam;
 
     public Contract(float cost, int maxNumberOfDesigners) {
         this.cost = cost;
@@ -17,9 +17,13 @@ public class Contract {
         return cost;
     }
 
-    public boolean addDesigner() {
+    public List<Employee> getDesignersTeam() {
+        return designersTeam;
+    }
+
+    public boolean addDesigner(Agency agency) {
         if(designersTeam.size() < maxNumberOfDesigners) {
-            Employee designer = Agency.getEmployeeWithLeastNumberOfContracts();
+            Employee designer = agency.getEmployeeWithLeastNumberOfContracts();
             designersTeam.add(designer);
             designer.increaseNumberOfContracts();
             return true;

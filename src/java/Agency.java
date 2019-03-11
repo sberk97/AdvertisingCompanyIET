@@ -5,8 +5,8 @@ import java.util.NoSuchElementException;
 
 public class Agency {
 
-    List<Employee> employeesList;
-    List<Contract> contractsList;
+    private List<Employee> employeesList;
+    private List<Contract> contractsList;
 
     public Agency() {
         contractsList = new ArrayList<>();
@@ -21,12 +21,19 @@ public class Agency {
         this.contractsList.add(contract);
     }
 
+    public List<Employee> getEmployeesList() {
+        return employeesList;
+    }
+
+    public List<Contract> getContractsList() {
+        return contractsList;
+    }
+
     public Employee getEmployeeWithLeastNumberOfContracts() {
-        Employee minByNumberOfContracts = employeesList
+        return this.employeesList
                 .stream()
                 .min(Comparator.comparing(Employee::getNumberOfContracts))
                 .orElseThrow(NoSuchElementException::new);
-        return minByNumberOfContracts;
     }
 
     public float getSumOfContractsCosts() {
@@ -36,6 +43,4 @@ public class Agency {
         }
         return sum;
     }
-
-
 }
