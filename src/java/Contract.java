@@ -43,18 +43,13 @@ public class Contract {
      * @param agency Agency from which employee will be added
      * @return true if employee is added, false if there are
      * more designers in the team than maximum number allowed
-     * or if employee is already in that contract
      */
     public boolean addDesigner(Agency agency) {
-        if(designersTeam.size() < maxNumberOfDesigners) {
-            Employee designer = agency.getEmployeeWithLeastNumberOfContracts();
-            if(designersTeam.contains(designer)) {
-                return false;
-            } else {
-                designersTeam.add(designer);
-                designer.increaseNumberOfContracts();
-                return true;
-            }
+        if(designersTeam.size() < this.maxNumberOfDesigners) {
+            Employee designer = agency.getEmployeeWithLeastNumberOfContracts(designersTeam);
+            designersTeam.add(designer);
+            designer.increaseNumberOfContracts();
+            return true;
         } else {
             return false;
         }

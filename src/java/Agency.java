@@ -18,11 +18,11 @@ public class Agency {
     }
 
     public void addEmployee(Employee employee) {
-        this.employeesList.add(employee);
+        employeesList.add(employee);
     }
 
     public void addContract(Contract contract) {
-        this.contractsList.add(contract);
+        contractsList.add(contract);
     }
 
     public List<Employee> getEmployeesList() {
@@ -35,6 +35,9 @@ public class Agency {
 
     /**
      * Solution based on https://www.baeldung.com/java-collection-min-max
+     * At first method is coping current list of employees and then
+     * removes from that list employees that are currently working in
+     * the contract which is calling this method
      * Method is using stream to get all employees objects and then
      * compare value of numberOfContracts from each of them to find
      * the one with the least contracts. If there are more than one
@@ -42,10 +45,12 @@ public class Agency {
      * is returned
      * @return Employee object with the least number of contracts, or the last
      * one in the list with this number
-     * It can also throw an exception if employeesList is empty
+     * It can also throw an exception if copiedList is empty
      */
-    public Employee getEmployeeWithLeastNumberOfContracts() {
-        return this.employeesList
+    public Employee getEmployeeWithLeastNumberOfContracts(List<Employee> exceptThem) {
+        List<Employee> copiedList = new ArrayList<>(employeesList);
+        copiedList.removeAll(exceptThem);
+        return copiedList
                 .stream()
                 .min(Comparator.comparing(Employee::getNumberOfContracts))
                 .orElseThrow(NoSuchElementException::new);

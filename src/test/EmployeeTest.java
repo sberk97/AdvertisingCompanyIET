@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EmployeeTest {
 
@@ -16,6 +16,9 @@ class EmployeeTest {
         assertEquals(0, employee.getNumberOfContracts());
     }
 
+    /**
+     * Method increases number of contracts by one
+     */
     @Test
     void increaseNumberOfContracts() {
         employee.increaseNumberOfContracts();

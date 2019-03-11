@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,7 +47,7 @@ class AgencyTest {
         agency.addEmployee(employee);
         agency.addEmployee(employee2);
         employee.increaseNumberOfContracts();
-        assertEquals(employee2, agency.getEmployeeWithLeastNumberOfContracts());
+        assertEquals(employee2, agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<Employee>()));
     }
 
     /**
@@ -60,18 +61,17 @@ class AgencyTest {
         Employee employee2 = new Employee("Test Employee2");
         agency.addEmployee(employee);
         agency.addEmployee(employee2);
-        assertEquals(employee, agency.getEmployeeWithLeastNumberOfContracts());
+        assertEquals(employee, agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<Employee>()));
     }
 
     /**
-     * It should get an employee with the least
-     * number of contracts which is last on the list
-     * Both employees have 0 contracts
+     * Method should throw an exception as there
+     * aren't any employees on the list
      */
     @Test
     void getEmployeeWithLeastNumberOfContractsIfListIsEmpty() {
         assertThrows(NoSuchElementException.class, () -> {
-            agency.getEmployeeWithLeastNumberOfContracts();
+            agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<Employee>());
         });
     }
 
