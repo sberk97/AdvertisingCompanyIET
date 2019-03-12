@@ -45,7 +45,7 @@ public class Contract {
      * more designers in the team than maximum number allowed
      */
     public boolean addDesigner(Agency agency) {
-        if(designersTeam.size() < this.maxNumberOfDesigners) {
+        if(designersTeam.size() < maxNumberOfDesigners) {
             Employee designer = agency.getEmployeeWithLeastNumberOfContracts(designersTeam);
             designersTeam.add(designer);
             designer.increaseNumberOfContracts();

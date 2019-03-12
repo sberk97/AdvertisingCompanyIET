@@ -47,7 +47,7 @@ class AgencyTest {
         agency.addEmployee(employee);
         agency.addEmployee(employee2);
         employee.increaseNumberOfContracts();
-        assertEquals(employee2, agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<Employee>()));
+        assertEquals(employee2, agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<>()));
     }
 
     /**
@@ -61,7 +61,7 @@ class AgencyTest {
         Employee employee2 = new Employee("Test Employee2");
         agency.addEmployee(employee);
         agency.addEmployee(employee2);
-        assertEquals(employee, agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<Employee>()));
+        assertEquals(employee, agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<>()));
     }
 
     /**
@@ -71,7 +71,7 @@ class AgencyTest {
     @Test
     void getEmployeeWithLeastNumberOfContractsIfListIsEmpty() {
         assertThrows(NoSuchElementException.class, () -> {
-            agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<Employee>());
+            agency.getEmployeeWithLeastNumberOfContracts(new ArrayList<>());
         });
     }
 
